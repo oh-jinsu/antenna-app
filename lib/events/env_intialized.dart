@@ -1,0 +1,3 @@
+class EnvInitialized {
+  const EnvInitialized();
+}

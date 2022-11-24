@@ -1,0 +1,3 @@
+class MessagingInitialized {
+  const MessagingInitialized();
+}

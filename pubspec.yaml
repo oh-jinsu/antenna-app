@@ -1,0 +1,28 @@
+name: antenna_app
+description: Common implementations for an antenna app.
+version: 0.1.0
+homepage:
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  antenna: ^1.2.2
+  firebase_core: ^2.3.0
+  firebase_messaging: ^14.1.1
+  flutter_dotenv: ^5.0.2
+  http: ^0.13.5
+  firebase_analytics: ^10.0.6
+  flutter_local_notifications: ^12.0.4
+  flutter_secure_storage: ^6.0.0
+  http_parser: ^4.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

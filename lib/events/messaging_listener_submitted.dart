@@ -1,0 +1,3 @@
+class MessageListenerAttached {
+  const MessageListenerAttached();
+}

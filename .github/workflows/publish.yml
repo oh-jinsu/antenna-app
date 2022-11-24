@@ -1,0 +1,26 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure pub credentials
+        run: |
+          echo '{
+            "accessToken":"${{ secrets.PUB_ACCESS_TOKEN }}",
+            "refreshToken":"${{ secrets.PUB_REFRESH_TOKEN }}",
+            "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
+            "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
+            "expiration": 1570721159347
+          }' > ~/.pub-cache/credentials.json
+      
+      - name: Publish
+        run: dart pub publish
