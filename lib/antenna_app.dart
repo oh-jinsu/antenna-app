@@ -1,5 +1,9 @@
 library antenna_app;
 
+export "package:flutter_dotenv/flutter_dotenv.dart";
+
+export "package:antenna/antenna.dart";
+
 export 'bootstrap/bootstrap.dart';
 
 export 'client/client.dart';
