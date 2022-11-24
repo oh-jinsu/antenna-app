@@ -17,23 +17,17 @@ class BootstrapDelegate {
   final FirebaseOptions firebaseOptions;
   final List<Store> stores;
   final List<Effect> effects;
-  final String Function(DotEnv env) setApiHost;
 
   const BootstrapDelegate({
     required this.firebaseOptions,
     required this.stores,
     required this.effects,
-    required this.setApiHost,
   });
 
   Future<void> bootstrap([Effect? listener]) async {
     WidgetsFlutterBinding.ensureInitialized();
 
     final subscription = listen((event) {
-      if (event is EnvInitialized) {
-        setApiHost(dotenv);
-      }
-
       listener?.call(event);
     });
 
