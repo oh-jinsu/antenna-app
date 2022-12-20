@@ -28,7 +28,7 @@ Future<void> _sendToken(String token) async {
         "Authorization": "Bearer $accessToken",
       },
       body: {
-        "device_token": token,
+        "deviceToken": token,
       },
     ),
   );

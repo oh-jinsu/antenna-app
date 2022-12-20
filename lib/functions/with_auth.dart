@@ -35,7 +35,7 @@ Future<Response> withAuth(
   final response = await post(
     endpoint("auth/refresh"),
     body: {
-      "refresh_token": refreshToken,
+      "refreshToken": refreshToken,
     },
   );
 
@@ -44,7 +44,7 @@ Future<Response> withAuth(
   }
 
   if (response is SuccessResponse) {
-    final accessToken = response.body["access_token"];
+    final accessToken = response.body["accessToken"];
 
     saveAccessToken(accessToken);
 
