@@ -1,6 +1,6 @@
 name: antenna_app
 description: Common implementations for an antenna app.
-version: 0.2.2
+version: 0.3.1
 repository: https://github.com/oh-jinsu/antenna-app
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  antenna: ^1.2.2
+  antenna: ^1.3.0
   firebase_core: ^2.3.0
   firebase_messaging: ^14.1.1
   flutter_dotenv: ^5.0.2

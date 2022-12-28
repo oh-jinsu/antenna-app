@@ -1,5 +1,5 @@
 import 'package:antenna/antenna.dart';
-import 'package:antenna_app/effects/types/when.dart';
+import 'package:antenna/effect.dart';
 import 'package:antenna_app/events/app_started.dart';
 import 'package:antenna_app/events/message_received.dart';
 import 'package:antenna_app/plugins/notification.dart';

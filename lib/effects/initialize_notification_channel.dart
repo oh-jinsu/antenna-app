@@ -1,4 +1,4 @@
-import 'package:antenna_app/effects/types/when.dart';
+import 'package:antenna/effect.dart';
 import 'package:antenna_app/events/app_started.dart';
 import 'package:antenna_app/plugins/notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';

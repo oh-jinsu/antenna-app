@@ -1,12 +1,11 @@
 import 'package:antenna/antenna.dart';
+import 'package:antenna/effect.dart';
 import 'package:antenna/store.dart';
-import 'package:antenna_app/effects/attach_message_listener.dart';
 import 'package:antenna_app/effects/background_message.dart';
 import 'package:antenna_app/effects/initialize_analytics.dart';
 import 'package:antenna_app/effects/initialize_messaging.dart';
 import 'package:antenna_app/effects/initialize_notification_channel.dart';
 import 'package:antenna_app/effects/load_env.dart';
-import 'package:antenna_app/effects/types/effect.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +24,18 @@ class Bootstrapper {
   Future<void> bootstrap(Widget app, [Effect? listener]) async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    final subscription = listen((event) {
+    final subscription = listenEffect((event) {
       listener?.call(event);
     });
 
-    stores.forEach(connect);
+    stores.forEach(connectStore);
 
-    listen(loadEnvEffect);
-    listen(initializeMessagingEffect);
-    listen(initializeNotificationChannelEffect);
-    listen(initializeFirebaseAnalytics);
-    listen(attachMessageListenerEffect);
+    effects.insert(0, loadEnvEffect);
+    effects.insert(1, initializeMessagingEffect);
+    effects.insert(2, initializeNotificationChannelEffect);
+    effects.insert(3, initializeFirebaseAnalytics);
 
-    effects.forEach(listen);
+    effects.forEach(listenEffect);
 
     await Firebase.initializeApp(options: firebaseOptions);
 
