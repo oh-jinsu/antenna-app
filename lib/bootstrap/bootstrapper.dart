@@ -1,6 +1,4 @@
 import 'package:antenna/antenna.dart';
-import 'package:antenna/effect.dart';
-import 'package:antenna/store.dart';
 import 'package:antenna_app/effects/background_message.dart';
 import 'package:antenna_app/effects/initialize_analytics.dart';
 import 'package:antenna_app/effects/initialize_messaging.dart';

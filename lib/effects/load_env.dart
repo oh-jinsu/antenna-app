@@ -1,5 +1,4 @@
 import 'package:antenna/antenna.dart';
-import 'package:antenna/effect.dart';
 import 'package:antenna_app/debug/report.dart';
 import 'package:antenna_app/events/app_started.dart';
 import 'package:antenna_app/events/env_intialized.dart';
