@@ -1,3 +1,0 @@
-class AuthNeeded {
-  const AuthNeeded();
-}

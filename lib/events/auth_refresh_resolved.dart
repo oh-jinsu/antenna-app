@@ -1,3 +1,0 @@
-class AuthRefreshResolved {
-  const AuthRefreshResolved();
-}
