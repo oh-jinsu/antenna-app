@@ -52,7 +52,7 @@ Future<Response> post<T>(
 Future<Response> put<T>(
   String uri, {
   Map<String, String>? headers,
-  required Map body,
+  required dynamic body,
 }) async {
   final info = "(PUT) $uri";
 
@@ -74,7 +74,7 @@ Future<Response> put<T>(
 Future<Response> patch<T>(
   String uri, {
   Map<String, String>? headers,
-  required Map body,
+  required dynamic body,
 }) async {
   final info = "(PATCH) $uri";
 
@@ -96,7 +96,7 @@ Future<Response> patch<T>(
 Future<Response> delete<T>(
   String uri, {
   Map<String, String>? headers,
-  required Map body,
+  required dynamic body,
 }) async {
   final info = "(DELETE) $uri";
 
