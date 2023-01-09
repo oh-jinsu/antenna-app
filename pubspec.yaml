@@ -1,6 +1,6 @@
 name: antenna_app
 description: Common implementations for an antenna app.
-version: 0.3.5
+version: 0.3.6
 repository: https://github.com/oh-jinsu/antenna-app
 
 environment:

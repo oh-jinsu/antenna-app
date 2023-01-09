@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:antenna_app/client/response.dart';
 import 'package:antenna_app/client/retry.dart';
+import 'package:antenna_app/client/to_body.dart';
 import 'package:antenna_app/client/transform.dart';
 import 'package:antenna_app/debug/report.dart';
 import 'package:http/http.dart' as http;
@@ -29,10 +30,8 @@ Future<Response> get<T>(
 Future<Response> post<T>(
   String uri, {
   Map<String, String>? headers,
-  required Map body,
+  required dynamic body,
 }) async {
-  final bodyString = jsonEncode(body);
-
   final info = "(POST) $uri";
 
   report(
@@ -43,7 +42,7 @@ Future<Response> post<T>(
     () => http.post(
       Uri.parse(uri),
       headers: headers,
-      body: bodyString,
+      body: toBody(body),
     ),
   );
 
@@ -55,8 +54,6 @@ Future<Response> put<T>(
   Map<String, String>? headers,
   required Map body,
 }) async {
-  final bodyString = jsonEncode(body);
-
   final info = "(PUT) $uri";
 
   report(
@@ -67,7 +64,7 @@ Future<Response> put<T>(
     () => http.put(
       Uri.parse(uri),
       headers: headers,
-      body: bodyString,
+      body: toBody(body),
     ),
   );
 
@@ -79,8 +76,6 @@ Future<Response> patch<T>(
   Map<String, String>? headers,
   required Map body,
 }) async {
-  final bodyString = jsonEncode(body);
-
   final info = "(PATCH) $uri";
 
   report(
@@ -91,7 +86,7 @@ Future<Response> patch<T>(
     () => http.patch(
       Uri.parse(uri),
       headers: headers,
-      body: bodyString,
+      body: toBody(body),
     ),
   );
 
@@ -103,19 +98,17 @@ Future<Response> delete<T>(
   Map<String, String>? headers,
   required Map body,
 }) async {
-  final bodyString = jsonEncode(body);
-
   final info = "(DELETE) $uri";
 
   report(
-    "Request $info\nRequestHeader $headers\nRequestBody ${const JsonEncoder.withIndent(" ").convert(body)}",
+    "Request (DELETE) $info\nRequestHeader $headers\nRequestBody ${const JsonEncoder.withIndent(" ").convert(body)}",
   );
 
   final response = await retry(
     () => http.delete(
       Uri.parse(uri),
       headers: headers,
-      body: bodyString,
+      body: toBody(body),
     ),
   );
 
