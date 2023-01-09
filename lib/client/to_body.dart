@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-String toBody(dynamic body) {
+dynamic toBody(dynamic body) {
   if (body is Map) {
     return jsonEncode(body);
   }
