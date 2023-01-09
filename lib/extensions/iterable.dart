@@ -6,4 +6,8 @@ extension IterableExtension<T> on Iterable<T> {
 
     return list;
   }
+
+  Future<Iterable<T>> parallel(Future<T> Function(T) toElement) {
+    return Future.wait(map(toElement));
+  }
 }

@@ -7,7 +7,9 @@ import 'package:http/http.dart' as http;
 Response transform(String info, http.Response response) {
   final statusCode = response.statusCode;
 
-  final responseBody = jsonDecode(utf8.decode(response.bodyBytes));
+  final responseBody = response.body.isNotEmpty
+      ? jsonDecode(utf8.decode(response.bodyBytes))
+      : null;
 
   report(
     "Response $statusCode $info\nResponseBody ${const JsonEncoder.withIndent(" ").convert(responseBody)}",
