@@ -1,13 +1,13 @@
 extension IterableExtension<T> on Iterable<T> {
-  Iterable<T> sort([int Function(T, T)? compare]) {
-    final list = toList();
+  Iterable<T> sorted([int Function(T, T)? compare]) {
+    final copy = toList();
 
-    list.sort(compare);
+    copy.sort(compare);
 
-    return list;
+    return copy;
   }
 
-  Future<Iterable<T>> parallel(Future<T> Function(T) toElement) {
+  Future<Iterable<U>> parallel<U>(Future<U> Function(T) toElement) {
     return Future.wait(map(toElement));
   }
 }
