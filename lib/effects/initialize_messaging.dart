@@ -38,7 +38,7 @@ final initializeMessagingEffect = when<AppStarted>((event) async {
     final notification = message.notification;
     final android = message.notification?.android;
 
-    if (notification != null) {
+    if (notification != null && android != null) {
       flutterLocalNotificationsPlugin.show(
         notification.hashCode,
         notification.title,
@@ -47,7 +47,7 @@ final initializeMessagingEffect = when<AppStarted>((event) async {
           android: AndroidNotificationDetails(
             androidNotificationChannel.id,
             androidNotificationChannel.name,
-            icon: android?.smallIcon,
+            icon: android.smallIcon,
           ),
         ),
       );
