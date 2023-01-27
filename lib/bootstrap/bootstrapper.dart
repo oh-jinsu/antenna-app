@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 
 class Bootstrapper {
   final FirebaseOptions firebaseOptions;
-  final List<Store> stores;
-  final List<Effect> effects;
+  final Iterable<Store> stores;
+  final Iterable<Effect> effects;
 
   const Bootstrapper({
     required this.firebaseOptions,
@@ -28,12 +28,13 @@ class Bootstrapper {
 
     stores.forEach(connectStore);
 
-    effects.insert(0, loadEnvEffect);
-    effects.insert(1, initializeMessagingEffect);
-    effects.insert(2, initializeNotificationChannelEffect);
-    effects.insert(3, initializeFirebaseAnalytics);
-
-    effects.forEach(listenEffect);
+    [
+      loadEnvEffect,
+      initializeMessagingEffect,
+      initializeNotificationChannelEffect,
+      initializeFirebaseAnalytics,
+      ...effects
+    ].forEach(listenEffect);
 
     await Firebase.initializeApp(options: firebaseOptions);
 
