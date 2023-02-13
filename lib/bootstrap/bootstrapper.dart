@@ -8,40 +8,31 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-class Bootstrapper {
-  final FirebaseOptions firebaseOptions;
-  final Iterable<Store> stores;
-  final Iterable<Effect> effects;
+Future<void> bootstrap({
+  required FirebaseOptions firebaseOptions,
+  required Iterable<Store> stores,
+  required Iterable<Effect> effects,
+  Effect? listener,
+}) async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  const Bootstrapper({
-    required this.firebaseOptions,
-    required this.stores,
-    required this.effects,
+  stores.forEach(connectStore);
+
+  final subscription = listenEffect((event) {
+    listener?.call(event);
   });
 
-  Future<void> bootstrap(Widget app, [Effect? listener]) async {
-    WidgetsFlutterBinding.ensureInitialized();
+  [
+    loadEnvEffect,
+    initializeMessagingEffect,
+    initializeNotificationChannelEffect,
+    initializeFirebaseAnalytics,
+    ...effects
+  ].forEach(listenEffect);
 
-    final subscription = listenEffect((event) {
-      listener?.call(event);
-    });
+  await Firebase.initializeApp(options: firebaseOptions);
 
-    stores.forEach(connectStore);
+  FirebaseMessaging.onBackgroundMessage(backgroundMessageEffect);
 
-    [
-      loadEnvEffect,
-      initializeMessagingEffect,
-      initializeNotificationChannelEffect,
-      initializeFirebaseAnalytics,
-      ...effects
-    ].forEach(listenEffect);
-
-    await Firebase.initializeApp(options: firebaseOptions);
-
-    FirebaseMessaging.onBackgroundMessage(backgroundMessageEffect);
-
-    subscription.cancel();
-
-    runApp(app);
-  }
+  subscription.cancel();
 }
