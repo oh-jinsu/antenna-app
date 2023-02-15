@@ -16,11 +16,11 @@ final initializeMessagingEffect = when<AppStarted>((event) async {
     sound: true,
   );
 
-  // await messaging.setForegroundNotificationPresentationOptions(
-  //   alert: true,
-  //   badge: true,
-  //   sound: true,
-  // );
+  await messaging.setForegroundNotificationPresentationOptions(
+    alert: false,
+    badge: false,
+    sound: false,
+  );
 
   final initialMessage = await messaging.getInitialMessage();
 
