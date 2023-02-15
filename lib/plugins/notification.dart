@@ -20,6 +20,11 @@ Future<void> showNotification(RemoteNotification notification) {
         androidNotificationChannel.name,
         icon: notification.android?.smallIcon,
       ),
+      iOS: const DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      ),
     ),
   );
 }
