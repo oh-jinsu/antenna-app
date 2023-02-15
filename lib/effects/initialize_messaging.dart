@@ -25,14 +25,14 @@ final initializeMessagingEffect = when<AppStarted>((event) async {
   final initialMessage = await messaging.getInitialMessage();
 
   if (initialMessage != null) {
-    dispatch(MessageReceived(initialMessage.data));
+    dispatch(MessageReceived(initialMessage));
   }
 
   FirebaseMessaging.onMessageOpenedApp.listen((message) {
-    dispatch(MessageReceived(message.data));
+    dispatch(MessageReceived(message));
   });
 
   FirebaseMessaging.onMessage.listen((message) {
-    dispatch(MessageReceived(message.data));
+    dispatch(MessageReceived(message));
   });
 });

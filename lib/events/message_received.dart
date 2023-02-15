@@ -1,5 +1,7 @@
-class MessageReceived {
-  final Map<String, dynamic> data;
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-  const MessageReceived(this.data);
+class MessageReceived {
+  final RemoteMessage message;
+
+  const MessageReceived(this.message);
 }
